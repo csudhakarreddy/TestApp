@@ -1,0 +1,52 @@
+<!-- common_template.html -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Function to collect form data
+        function collectFormData(formId) {
+            var formData = {};
+            $('#' + formId + ' input').each(function() {
+                formData[$(this).attr('name')] = $(this).val();
+            });
+            return formData;
+        }
+
+        // Function to send a POST request
+        function sendPostRequest(data) {
+            $.ajax({
+                type: 'POST',
+                url: '/process-form-data/',
+                data: {formData: JSON.stringify(data)},
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+        }
+
+        // Event handler for the button click
+        $('#submitButton').on('click', function() {
+            // Collect data from different pages
+            var formDataPage1 = collectFormData('formPage1');
+            var formDataPage2 = collectFormData('formPage2');
+
+            // Combine data from different pages
+            var combinedData = {
+                page1: formDataPage1,
+                page2: formDataPage2
+                // Add more pages if needed
+            };
+
+            // Send a single POST request with combined data
+            sendPostRequest(combinedData);
+        });
+    });
+</script>
+
+<!-- Include form pages -->
+{% block form_pages %}
+{% include 'page1.html'%}
+{% include 'page2.html'%}
+{% endblock %}
+
+<!-- Common submit button -->
+<button id="submitButton">Submit</button>

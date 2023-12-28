@@ -1,0 +1,79 @@
+
+
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width,
+						initial-scale=1.0">
+	<title>GeeksforGeeks</title>
+</head>
+
+<body>
+	<header>
+		<h1 class="heading">WNS GPUI</h1>
+	</header>
+
+	<!-- container div -->
+	<div class="container">
+
+		<!-- upper button section to select
+			the login or signup form -->
+		<div class="slider"></div>
+				{% for message in messages %}
+				  <div class="alert alert-info" >{{message}}</div>
+				{% endfor %}
+		<!-- Form section that contains the
+			login and the signup form -->
+		<div class="form-section">
+
+			<!-- login form -->
+			<form action="." method="post">
+				{% csrf_token %}
+			<div class="login-box">
+				<input type="username"
+					class="username ele"
+					name ="username"
+					id ="username"
+					placeholder="Enter username">
+				<input type="password"
+					class="password ele"
+					name ="loginpass1"
+					id ="loginpass1"
+					placeholder="password">
+				<button class="clkbtn" name="btnSignIn">Login</button>
+			</div>
+
+			</form>
+			<!-- signup form -->
+			<form action="." method="post">
+				{% csrf_token %}
+			<div class="signup-box">
+				<input type="text"
+					class="name ele"
+					name ="username"
+					id ="username"
+					placeholder="Enter your name">
+				<input type="email"
+					class="email ele"
+					name ="email"
+					id ="email"
+					placeholder="youremail@email.com">
+				<input type="password"
+					class="password ele"
+					name ="pass1"
+					id ="pass1"
+					placeholder="password">
+				<input type="password"
+					class="password ele"
+					name ="pass2"
+					id ="pass2"
+					placeholder="Confirm password">
+				<button class="clkbtn" name="btnSignUp">Signup</button>
+			</div>
+					</form>
+		</div>
+
+	</div>
+</body>
+</html>
